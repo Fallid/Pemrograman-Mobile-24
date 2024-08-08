@@ -10,6 +10,8 @@ dependencies:
   get: 4.6.6
   # http package
   http: ^1.2.0
+  # dio package
+  dio: ^5.5.0+1
   flutter: 
     sdk: flutter
 
