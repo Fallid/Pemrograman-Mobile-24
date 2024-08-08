@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Get.toNamed(Routes.DIO);
                 break;
               case 2:
-                Get.toNamed(Routes.HTTP);
+                Get.toNamed(Routes.GETCONNECT);
                 break;
             }
           },

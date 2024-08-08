@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:modul_2_public_api/app/modules/dio_screen/bindings/dio_binding.dart';
 import 'package:modul_2_public_api/app/modules/dio_screen/views/dio_view.dart';
+import 'package:modul_2_public_api/app/modules/get_connect/bindings/get_connect_binding.dart';
+import 'package:modul_2_public_api/app/modules/get_connect/views/get_connect_view.dart';
 import 'package:modul_2_public_api/app/modules/http_screen/bindings/http_binding.dart';
 import 'package:modul_2_public_api/app/modules/http_screen/views/http_view.dart';
 
@@ -25,6 +27,10 @@ class AppPages {
         page: () => const HttpView(),
         binding: HttpBinding()),
     GetPage(
-        name: _Paths.DIO, page: () => const DioView(), binding: DioBinding())
+        name: _Paths.DIO, page: () => const DioView(), binding: DioBinding()),
+    GetPage(
+        name: _Paths.GETCONNECT,
+        page: () => const GetConnectView(),
+        binding: GetConnectBinding())
   ];
 }
