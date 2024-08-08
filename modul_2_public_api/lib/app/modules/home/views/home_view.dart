@@ -11,8 +11,14 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(titleText: "HomePage",),
-      body: const Center(
-        child: Text('Home Page'),
+      body: const Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("HOW TO USE THIS APPLICATION"),
+          Text("1. Buka icon titik 3 di pojok kanan atas"),
+          Text("2. Pilih Package yang ingin kalian liat sebagai outputnya"),
+        ],
       ),
     );
   }

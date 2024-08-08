@@ -7,6 +7,7 @@ abstract class Routes {
   static const HTTP = _Paths.HTTP;
   static const DIO = _Paths.DIO;
   static const GETCONNECT = _Paths.GETCONNECT;
+  static const ARTICLE_DETAILS = _Paths.ARTICLE_DETAILS;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const HTTP = '/http_view';
   static const DIO = '/dio_view';
   static const GETCONNECT = '/get_connect_view';
+  static const ARTICLE_DETAILS = '/article_details';
 }
