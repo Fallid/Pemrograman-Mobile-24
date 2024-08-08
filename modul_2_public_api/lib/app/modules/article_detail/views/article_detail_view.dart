@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../data/models/article.dart';
+import '../controllers/article_detail_controller.dart';
+import 'article_detail_web_view.dart';
 
-class ArticleDetailPage extends StatelessWidget {
+class ArticleDetailPage extends GetView<ArticleDetailController> {
   final Article article;
   const ArticleDetailPage({Key? key, required this.article}) : super(key: key);
   @override
@@ -64,7 +67,7 @@ class ArticleDetailPage extends StatelessWidget {
                   ElevatedButton(
                     child: const Text('Read more'),
                     onPressed: () {
-//comingsoon
+                      Get.to(() => ArticleDetailWebView(article: article));
                     },
                   ),
                 ],

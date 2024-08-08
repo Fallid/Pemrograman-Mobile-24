@@ -12,6 +12,8 @@ dependencies:
   http: ^1.2.0
   # dio package
   dio: ^5.5.0+1
+  #WebView
+  webview_flutter: ^4.8.0
   flutter: 
     sdk: flutter
 

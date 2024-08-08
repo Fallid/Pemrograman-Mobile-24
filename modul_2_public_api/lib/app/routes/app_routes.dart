@@ -8,6 +8,7 @@ abstract class Routes {
   static const DIO = _Paths.DIO;
   static const GETCONNECT = _Paths.GETCONNECT;
   static const ARTICLE_DETAILS = _Paths.ARTICLE_DETAILS;
+  static const ARTICLE_DETAILS_WEBVIEW = _Paths.ARTICLE_DETAILS_WEBVIEW;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const DIO = '/dio_view';
   static const GETCONNECT = '/get_connect_view';
   static const ARTICLE_DETAILS = '/article_details';
+  static const ARTICLE_DETAILS_WEBVIEW = '/article_details_webview';
 }
