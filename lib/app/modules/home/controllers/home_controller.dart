@@ -18,11 +18,6 @@ class HomeController extends GetxController {
     });
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
   // Fungsi onClose dipanggil ketika controller dibuang
   @override
   void onClose() {
