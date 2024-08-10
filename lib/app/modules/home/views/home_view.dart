@@ -10,7 +10,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Speech to Text Example"),
+        title: const Text("Speech to Text Example"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -18,17 +18,17 @@ class HomeView extends GetView<HomeController> {
           children: [
             Obx(() => Text(
               controller.text.value, // Menampilkan teks yang dihasilkan dari pengenalan suara
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             )),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Obx(() => controller.isListening.value
                 ? ElevatedButton(
                     onPressed: controller.stopListening,
-                    child: Text("Stop Listening"),
+                    child: const Text("Stop Listening"),
                   )
                 : ElevatedButton(
                     onPressed: controller.startListening,
-                    child: Text("Start Listening"),
+                    child: const Text("Start Listening"),
                   )),
           ],
         ),

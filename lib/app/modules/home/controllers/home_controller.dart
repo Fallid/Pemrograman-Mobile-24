@@ -9,16 +9,6 @@ class HomeController extends GetxController {
     _initSpeech(); // Inisialisasi layanan pengenalan suara saat controller dibuat
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   // Instansiasi SpeechToText untuk menangani pengenalan suara
   final stt.SpeechToText _speech = stt.SpeechToText();
 
