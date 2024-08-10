@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../models/article.dart';
 class HttpController extends GetxController {
   static const String _baseUrl = 'https://newsapi.org/v2/';
-  static const String _apiKey = '8849ce4f79484316bb3d4e00adfd54ef'; //Ganti ke API KEY yang sudah didapat
+  static const String _apiKey = 'YOUR_API'; //Ganti ke API KEY yang sudah didapat
   static const String _category = 'business';
   static const String _country = 'us'; //us maksudnya United States ya
   
