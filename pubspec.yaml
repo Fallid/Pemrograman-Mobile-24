@@ -8,10 +8,12 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.6
+  # speech to text package
+  speech_to_text: ^6.6.2
+  # permission handler for microphone
+  permission_handler: ^11.3.1
   flutter: 
     sdk: flutter
-  speech_to_text: ^6.6.2
-  permission_handler: ^11.3.1
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
