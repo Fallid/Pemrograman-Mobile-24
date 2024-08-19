@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-import 'package:modul_6_asynchronous_handling/dependency_injection.dart';
+import 'app/modules/connection/views/init_connection_view.dart';
 
-import 'app/routes/app_pages.dart';
-
-Future <void> main() async{
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
+    const InitConnection()
   );
-  DependencyInjection.init();
 }
