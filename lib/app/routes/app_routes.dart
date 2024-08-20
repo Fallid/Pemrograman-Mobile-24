@@ -4,13 +4,11 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-  static const NOCONN = _Paths.NOCONN;
-  static const INITCONN = _Paths.INITCONN;
+  static const PAGE2 = _Paths.PAGE2;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
-  static const NOCONN = '/no_conn';
-  static const INITCONN = '/init_conn'; 
+  static const PAGE2 = '/page2';
 }
