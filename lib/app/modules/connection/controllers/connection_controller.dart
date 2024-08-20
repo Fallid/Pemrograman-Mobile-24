@@ -15,12 +15,13 @@ class ConnectionController extends GetxController {
       _updateConnectionStatus(connectivityResults.first);
     });
   }
-
+  // Fungsi untuk mengupdate status koneksi
   void _updateConnectionStatus(ConnectivityResult connectivityResult) {
+    // kondisi dimana aplikasi mendeteksi bawha tidak ada koneksi sama sekali
     if (connectivityResult == ConnectivityResult.none) {
       Get.offAll(() => const NoConnectionView());
     } else {
-      
+      // else merupakan kondisi jika aplikasi terhubung dengan koneksi wifi atau mobile data
       if (Get.currentRoute == '/NoConnectionView') {
         Get.offAll(() => const HomeView());
       }
