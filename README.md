@@ -1,3 +1,16 @@
-# Pemrograman-Mobile-24
+# trial
 
-## Pada modul 3 ini, silahkan membenahi codingan sesuai struktur yang telah diajarkan pada modul 1 dan modul 2. Pastikan project kalian mengimplementasikan State Management GetX dan Architecture Pattern.
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
