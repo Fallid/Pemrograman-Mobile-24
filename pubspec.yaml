@@ -1,0 +1,26 @@
+name: trial
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies: 
+  firebase_core: ^2.15.1
+  firebase_auth: ^4.7.3
+  shared_preferences: ^2.2.0
+  firebase_messaging: ^14.6.6
+
+  cupertino_icons: ^1.0.2
+  get: 4.6.6
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
