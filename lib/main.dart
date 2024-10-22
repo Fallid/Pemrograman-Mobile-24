@@ -1,34 +1,182 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trial/notification_handler.dart';
-// import 'package:trial/auth_controller.dart';
-// import 'package:trial/login_page.dart';
-import 'package:trial/register_page.dart';
-import 'package:trial/firebase_options.dart';
+import 'package:flutter/services.dart';
+import 'package:geocoding/geocoding.dart';
+// import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
+// import 'package:clipboard/clipboard.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await Get.putAsync(() async => await SharedPreferences.getInstance());
-  await FirebaseMessagingHandler().initPushNotification();
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Firebase Auth',
+      title: 'Geolocator',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: RegisterPage(), // Atau LoginPage(), tergantung halaman awal yang diinginkan
+      home: const MyHomePage(title: 'Trial Geolocator'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String strLatLong = 'Belum Mendapatkan Lat dan Long, Silahkan tekan tombol';
+  String strAlamat = 'Mencari lokasi...';
+  bool loading = false;
+
+  Future<Position> _getGeoLocationPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      await Geolocator.openLocationSettings();
+      return Future.error('Location service not enabled');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permission denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permission denied forever, we cannot access the location');
+    }
+
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+  }
+
+  Future<void> getAddressFromLongLat(Position position) async {
+    List<Placemark> placemarks = await placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    );
+    Placemark place = placemarks[0];
+    setState(() {
+      strAlamat = '${place.street}, ${place.subLocality}, ${place.locality}, '
+          '${place.postalCode}, ${place.country}';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {
+                strLatLong = 'Belum Mendapatkan Lat dan Long, Silahkan tekan tombol';
+                strAlamat = 'Mencari lokasi...';
+              });
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Titik Koordinat',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            GestureDetector(
+              child: Text(strLatLong),
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(text: strLatLong));
+                final snackBar = SnackBar(
+                  content: const Text('LatLong berhasil disalin!'),
+                  backgroundColor: Colors.green,
+                  action: SnackBarAction(
+                    textColor: Colors.white,
+                    label: 'Tutup',
+                    onPressed: () {},
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+            const SizedBox(height: 40),
+            const Text(
+              'Alamat',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            GestureDetector(
+              child: Text(strAlamat),
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(text: strAlamat));
+                final snackBar = SnackBar(
+                  content: const Text('Alamat berhasil disalin!'),
+                  backgroundColor: Colors.green,
+                  action: SnackBarAction(
+                    textColor: Colors.white,
+                    label: 'Tutup',
+                    onPressed: () {},
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+            ),
+            const SizedBox(height: 20),
+            loading
+                ? const Center(child: CircularProgressIndicator())
+                : ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          side: const BorderSide(color: Colors.green),
+                        ),
+                      ),
+                    ),
+                    onPressed: () async {
+                      setState(() {
+                        loading = true;
+                      });
+                      Position position = await _getGeoLocationPosition();
+                      setState(() {
+                        loading = false;
+                        strLatLong =
+                            '${position.latitude}, ${position.longitude}';
+                      });
+                      getAddressFromLongLat(position);
+                    },
+                    child: const Text('Tagging Lokasi'),
+                  ),
+          ],
+        ),
+      ),
     );
   }
 }

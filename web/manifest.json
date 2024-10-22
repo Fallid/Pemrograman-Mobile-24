@@ -1,6 +1,6 @@
 {
-    "name": "trial",
-    "short_name": "trial",
+    "name": "geolocator",
+    "short_name": "geolocator",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

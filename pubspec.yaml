@@ -1,4 +1,4 @@
-name: trial
+name: trialgeo
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
@@ -6,15 +6,16 @@ environment:
   sdk: '>=3.2.6 <4.0.0'
 
 dependencies: 
-  firebase_core: ^2.15.1
-  firebase_auth: ^4.7.3
-  shared_preferences: ^2.2.0
-  firebase_messaging: ^14.6.6
+  flutter: 
+    sdk: flutter
 
   cupertino_icons: ^1.0.2
   get: 4.6.6
-  flutter: 
-    sdk: flutter
+
+  geocoding: ^3.0.0
+  geolocator: ^11.1.0
+  clipboard: ^0.1.3
+  permission_handler: ^9.2.0
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

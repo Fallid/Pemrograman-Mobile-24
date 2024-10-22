@@ -1,4 +1,4 @@
-package com.example.trial
+package com.example.geolocator
 
 import io.flutter.embedding.android.FlutterActivity
 
